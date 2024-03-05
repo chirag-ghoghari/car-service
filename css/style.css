@@ -1,0 +1,16 @@
+.image-icon{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sidebar .nav-link{
+    transition: 0.2s;
+}
+.sidebar .nav-link:hover{
+    transform: translateX(10px);
+}
+.card{
+    height:100% !important;
+}
