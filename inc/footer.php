@@ -24,6 +24,33 @@
             </div>
         </div>
     </div>
+    
+    <!-- why car servies -->
+    <div class="container">
+        <div>
+            <h2 class="text-center text-uppercase">Why Car Service</h2>
+        </div>
+        <div class="d-flex py-5 row gx-5">
+            <div class="col-6">   
+                <img src="./img/car_garage.jpg" alt="" class="w-100 shadow-lg  bg-body rounded">   
+            </div>
+            <div class="col-6"> 
+                <div class="text-center my-5">
+                    <h1 class="text-primary font-weight-bold">500+</h1>
+                    <p>Satisfied Customer in india</p>
+                </div>
+                <div class="text-center my-5">
+                    <h1 class="text-primary font-weight-bold txt-size">20+</h1>
+                    <p>Years of Experiwnce</p>
+                </div>
+                <div  class="text-center my-5">
+                    <h1 class="text-primary font-weight-bold txt-size">10K</h1>
+                    <p>Cars Services</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- About Us div -->
     <div class="about py-5" id="aboutus">
         <div class="container">
@@ -55,7 +82,7 @@
                 <h4>Contact Information</h4>
                 <p>Email: hello@carservice.com</p>
                 <p>Phone: +1 (123) 456-7890</p>
-                <p>Address: 123 Sutex Complex, Surat, Bharat</p>
+                <p>Address: 123 Vivekanand Complex,Surat,Gujrat</p>
             </div>
         </div>
 

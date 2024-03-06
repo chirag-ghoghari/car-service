@@ -16,8 +16,7 @@ require 'connection.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
     <title>Document</title>
 </head>
 
@@ -95,19 +94,19 @@ require 'connection.php';
                                             <span class="badge <?php
                                                                 switch ($r['status']) {
                                                                     case 0:
-                                                                        echo 'bg-warning';
+                                                                        echo 'bg-warning py-2';
                                                                         break;
 
                                                                     case 1:
-                                                                        echo 'bg-success';
+                                                                        echo 'bg-success py-2';
                                                                         break;
 
                                                                     case 2:
-                                                                        echo 'bg-primary';
+                                                                        echo 'bg-primary py-2';
                                                                         break;
 
                                                                     case 3:
-                                                                        echo 'bg-danger';
+                                                                        echo 'bg-danger py-2';
                                                                         break;
                                                                 }
 

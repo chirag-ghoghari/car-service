@@ -68,7 +68,7 @@ $row = mysqli_fetch_array($result);
                         </div>
                         <div class="mb-3">
                             <label for="vname" class="form-label">Vehicle name</label>
-                            <input type="text" class="form-control" id="vname" name="vname" value="">
+                            <input type="text" class="form-control" id="vname" name="vname" value="" required>
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>

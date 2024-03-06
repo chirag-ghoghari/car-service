@@ -49,7 +49,7 @@ $row = mysqli_fetch_array($result);
             <p>At our Company, we take pride in providing top-notch car services to ensure your vehicle runs at peak
                 performance. With a team of skilled technicians and state-of-the-art equipment, we offer a comprehensive
                 range of services tailored to meet your specific needs.</p>
-            <a href="./send_req.php" class="btn btn-light btn-lg">Send Request</a>
+            <a href="./send_req.php" class="btn btn-light btn-lg">Send Request</a>  
         </div>
     </div>
     <?php include './inc/footer.php' ?>
