@@ -10,7 +10,10 @@ require 'connection.php';
 
 $selectqry = "select * from user where username='{$uname}'";
 $result = mysqli_query($conn, $selectqry);
-$row = mysqli_fetch_array($result);
+while($row = mysqli_fetch_array($result)){
+    $_SESSION['email'] = $row['email'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

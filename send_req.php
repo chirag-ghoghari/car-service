@@ -5,12 +5,58 @@ if (!isset($_SESSION['username'])) {
     header('Location: login.php');
 }
 $uname = $_SESSION['username'];
-$sendReq = $_GET["sendReq"];
+$sendReq = "";
 require 'connection.php';
-
+if (isset($_GET['sendReq'])) {
+    $sendReq = $_GET["sendReq"];
+}
 $selectqry = "select * from  user where username='$uname'";
 $result = mysqli_query($conn, $selectqry);
 $row = mysqli_fetch_array($result);
+
+$qry2 = "select * from services where isActive=1";
+$result2 = mysqli_query($conn, $qry2) or die('Not come');
+$ammount = 0;
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require('./phpmailer/PHPMailer.php');
+require('./phpmailer/SMTP.php');
+require('./phpmailer/Exception.php');
+function sendMail($email)
+{
+
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
+        $mail->SMTPAuth = true;                                   //Enable SMTP authentication
+        $mail->Username = 'developkk1012@gmail.com';                     //SMTP username
+        $mail->Password = 'gkmf smjz khwa xsic';                               //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS
+
+        //Recipients
+        # $mail->setFrom('lrdhingadiya@gmail.com', 'Estate');
+        $mail->From = "developkk1012@gmail.com";
+        $mail->FromName = "Car Service";
+        $mail->addAddress($email);     //Add a recipient
+
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = 'Request to get service';
+        $mail->Body = "<h1>You are requested a service</h1>";
+
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        return false;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +110,8 @@ $row = mysqli_fetch_array($result);
                     <div class="col-6">
                         <div class="mb-3">
                             <label for="oname" class="form-label">Owner Name</label>
-                            <input type="text" class="form-control" id="oname" name="oname" value="<?php echo $row['username'] ?>" readonly>
+                            <input type="text" class="form-control" id="oname" name="oname"
+                                value="<?php echo $row['username'] ?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="vname" class="form-label">Vehicle name</label>
@@ -72,7 +119,8 @@ $row = mysqli_fetch_array($result);
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
-                            <textarea name="address" id="address" cols="30" rows="5" value="" class="form-control" required></textarea>
+                            <textarea name="address" id="address" cols="30" rows="5" value="" class="form-control"
+                                required></textarea>
                         </div>
                     </div>
                     <div class="col-6">
@@ -88,27 +136,33 @@ $row = mysqli_fetch_array($result);
                             <label for="vnumber" class="form-label">Select Services</label>
                             <hr>
                             <?php
-                            $qry = "select * from services where isActive=1";
-                            $result = mysqli_query($conn, $qry) or die('Not come');
-                            while ($r = mysqli_fetch_assoc($result)) :
-                    
-                            if($r['sname'] == $sendReq){
-                                ?>
-                                 <input type="checkbox" class="form-check-input" id="<?php echo $r['sname'] ?>" name="services[]" value="<?php echo $r['sname'] ?>" checked>
+
+                            while ($r = mysqli_fetch_assoc($result2)):
+
+                                if ($r['sname'] == $sendReq) {
+                                    $ammount = $ammount + $r['price'];
+                                    ?>
+                                    <input type="checkbox" class="form-check-input" id="<?php echo $r['sname'] ?>"
+                                        name="services[]" value="<?php echo $r['sname'] ?>" checked >
                             <?php
-                            }else{?>
-                                <input type="checkbox" class="form-check-input" id="<?php echo $r['sname'] ?>" name="services[]" value="<?php echo $r['sname'] ?>" >
+                                } else { ?>
+                                <input type=" checkbox" class="form-check-input" id="<?php echo $r['sname'] ?>"
+                                        name="services[]" value="<?php echo $r['sname'] ?>" >
                            <?php } ?>
                                
-                                <label for="<?php echo $r['sname'] ?>"><?php echo $r['sname'] ?></label>
+                                <label for=" <?php echo $r['sname'] ?>">
+                                <?php echo $r['sname'] . " ( " . $r['price'] . " )" ?></label>
                             <?php endwhile; ?>
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-dark" name="submit">Send Request</button>
+                <label>
+                    <?php echo $ammount ?>
+                </label></br>
+                <button type="submit" class="btn btn-dark" name="submit" onclick="check();">Pay Now</button>
                 <?php
                 if (isset($_POST['submit'])) {
-                    // print_r($_POST);
+                    // // print_r($_POST);
                     $oname = $_POST['oname'];
                     $contact = $_POST['contact'];
                     $address = $_POST['address'];
@@ -120,18 +174,80 @@ $row = mysqli_fetch_array($result);
                     $result = mysqli_query($conn, $qry);
                     //alert("Successfully send request")
                     header('Location: view_service.php');
+                    sendMail( $_SESSION['email']);
                     if ($result) {
-                       //  alert("Request send successfully!");
-                      
+                        //  alert("Request send successfully!");
+                
                     } else {
-                       //  alert('Not inserted! ');
+                        //  alert('Not inserted! ');
                     }
+                    // var name = jQuery('#name').val();
+                    // var amt = jQuery('#amt').val();
+                    // var ammount = $
+                    // var options = {
+                    //     "key": "rzp_test_YrkwoYBUUy52Ww", // Enter the Key ID generated from the Dashboard
+                    //     "amount": amt * 100,
+                    //     "currency": "INR",
+                    //     "name": "Acme Corp",
+                    //     "description": "Test Transaction",
+                    //     "image": "https://example.com/your_logo",
+                    //     "handler": function(response) {
+                    //         jQuery.ajax({
+                    //             type: 'post',
+                    //             url: 'payment.php',
+                    //             data: "payment_id=" + response.Razorpay_payment_id + "&amt=" + amt + "&name" + name,
+                    //         });
+                    //     },
+                    //     "theme": {
+                    //         "color": "#3399cc"
+                    //     }
+                    // };
+                    // var rzp1 = new Razorpay(options);
+                    // rzp1.on('payment.failed', function(response) {
+                    //     alert(response.error.code);
+                    //     alert(response.error.description);
+                    //     alert(response.error.source);
+                    //     alert(response.error.step);
+                    //     alert(response.error.reason);
+                    //     alert(response.error.metadata.order_id);
+                    //     alert(response.error.metadata.payment_id);
+                    // });
+                    // rzp1.open();
+                    // e.preventDefault();
                 }
                 ?>
                 <!-- <button type="submit" class="btn btn-success" name="back">Back</button> -->
             </form>
         </div>
+
     </div>
+    <script>
+        function handleCheckboxChange(checkbox, value) {
+            if (checkbox.checked) {
+                $ammount = $ammount + value;
+                console.log("Checkbox " + checkbox.value + " is checked");
+                // You can perform any action you want here, such as sending an AJAX request to a server
+            } else {
+                console.log("Checkbox " + checkbox.value + " is unchecked");
+                // You can perform any action you want here
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function check() {
+            var inputs = document.querySelectorAll("input[type='checkbox']");
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].checked) {
+                    return true;
+                }
+            }
+            alert("You have to select at least one.");
+            return false;
+        }
+    </script>
+    <script type="text/javascript">
+
+    </script>
     <!-- Services div -->
     <?php include './inc/footer.php' ?>
 

@@ -41,6 +41,7 @@ if (isset($_POST['submit'])) {
     mysqli_query($conn, $qry) or die('not updated');
     mysqli_query($conn, $update_req) or die('Service Request Not Updated');
     $_SESSION['username'] = $new_username;
+    $_SESSION['email'] = $new_email;
 
     if ($_FILES['profile']['name'] != '') {
 
