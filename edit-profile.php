@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
             $change_img =  "update user set img = '{$file_name}' where username = '{$uname}'";
             mysqli_query($conn, $change_img) or die('not Uploded');
 
-            move_uploaded_file($temp_file, '../img/' . $file_name) or die('Not Uploded');
+            move_uploaded_file($temp_file, './img/' . $file_name) or die('Not Uploded');
     }
 
     header('Location: ./view-profile.php');
