@@ -69,6 +69,14 @@ function sendMail($email)
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .dropdown{
+            width: 100%;
+            padding: 6px;
+            border-radius: 5px;
+            border-color: lightgray;
+        }
+    </style>
 </head>
 
 <body>
@@ -117,8 +125,23 @@ function sendMail($email)
                                 value="<?php echo $row['username'] ?>" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="vname" class="form-label">Vehicle name</label>
-                            <input type="text" class="form-control" id="vname" name="vname" value="" required>
+
+                        <label for="vname" class="form-label">Vehicle name</label><br>
+                        <select name="vname" id="vname" class="dropdown" required>
+	                            <option value="">Vehical Name</option>
+	                            <option value="Maruti Suzuki">Maruti Suzuki</option>
+	                            <option value="Hyundai">Hyundai</option>
+	                            <option value="Lamborghini">Lamborghini</option>
+                                <option value="Porsche">Porsche</option>
+                                <option value="Ferrari">Ferrari</option>
+                                <option value="McLaren">McLaren</option>
+                                <option value="Aston Martin">Aston Martin</option>
+                                <option value="Bmw">Bmw</option>
+                                <option value="Daimler">Daimler</option>
+                                <option value="Bugatti">Bugatti</option>
+                        </select>
+                            <!-- <label for="vname" class="form-label">Vehicle name</label>
+                            <input type="text" class="form-control" id="vname" name="vname" value="" required> -->
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>

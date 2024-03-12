@@ -21,6 +21,7 @@ require 'connection.php';
 </head>
 
 <body>
+<?php include './inc/home.php'; ?>
     <div class="container-fluid">
         <div class="row flex-nowrap">
             <div class="col py-3">
