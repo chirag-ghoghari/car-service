@@ -92,6 +92,9 @@ function sendMail($email)
                         <a class="nav-link" href="#contect">Contact</a>
                     </li>
                 </ul>
+                <div>
+                <i class="fa-solid fa-bars"></i>
+                </div>
                 <div class="d-flex pe-5">
                     <a href="./logout.php" class="btn btn-light">Logout</a>
                 </div>
@@ -136,30 +139,17 @@ function sendMail($email)
                             <label for="vnumber" class="form-label">Select Services</label>
                             <hr>
                             <?php
-
-                            while ($r = mysqli_fetch_assoc($result2)):
-
-                                if ($r['sname'] == $sendReq) {
-                                    $ammount = $ammount + $r['price'];
-                                    ?>
-                                    <input type="checkbox" class="form-check-input" id="<?php echo $r['sname'] ?>"
-                                        name="services[]" value="<?php echo $r['sname'] ?>" checked >
-                            <?php
-                                } else { ?>
-                                <input type=" checkbox" class="form-check-input" id="<?php echo $r['sname'] ?>"
-                                        name="services[]" value="<?php echo $r['sname'] ?>" >
-                           <?php } ?>
-                               
-                                <label for=" <?php echo $r['sname'] ?>">
-                                <?php echo $r['sname'] . " ( " . $r['price'] . " )" ?></label>
+                            $qry = "select * from services where isActive=1";
+                            $result = mysqli_query($conn, $qry) or die('Not come');
+                            while ($r = mysqli_fetch_assoc($result)) :
+                            ?>
+                                <input type="checkbox" class="form-check-input" id="<?php echo $r['sname'] ?>" name="services[]" value="<?php echo $r['sname'] ?>">
+                                <label for="<?php echo $r['sname'] ?>"><?php echo $r['sname'] ." ( " . $r['price'] . " )" ?></label> <br><br>   
                             <?php endwhile; ?>
                         </div>
                     </div>
                 </div>
-                <label>
-                    <?php echo $ammount ?>
-                </label></br>
-                <button type="submit" class="btn btn-dark" name="submit" onclick="check();">Pay Now</button>
+                <button type="submit" class="btn btn-dark" name="submit" onclick="check();">Send Request</button>
                 <?php
                 if (isset($_POST['submit'])) {
                     // // print_r($_POST);

@@ -42,7 +42,7 @@ while($row = mysqli_fetch_array($result)){
 
 <body>
     <!-- Navbar -->
-    <?php include './inc/top-navbar.php' ?>
+    <?php include './inc/home.php' ?>
 
     <!-- Hero div -->
     <div class="hero bg-dark text-white  py-5" id="home">

@@ -19,3 +19,8 @@
 .txt-size{
     font-size: 50px;
 }
+
+.person_img{
+    width: 15%;
+    border-radius: 50%;
+}

@@ -59,15 +59,12 @@
                 <div class="col-md-6">
                     <div class="card p-4 shadow">
                         <h3>Our Mission</h3>
-                        <p>Our mission is to ensure the safety, reliability, and performance of your vehicles. We take
-                            pride in offering a wide range of services, from routine maintenance to complex repairs, all
-                            designed to keep you on the road with peace of mind.</p>
+                        <p>Car Service’s mission is to enable premium quality care for your luxury car service at affordable pricing . We ensure real-time updates for complete car care needs with a fair and transparent pricing mechanism.</p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card p-4 shadow">
-                        <p>Morbi eget urna ut tellus venenatis tincidunt. Donec nec varius velit, sit amet laoreet
-                            justo. Nulla facilisi.</p>
+                        <p>Unit no.4, Katargam Warehousing Pvt. Ltd., Behind Reliance Smart Mall, Katargam , Surat , Gujarat 394005</p>
                     </div>
                 </div>
             </div>

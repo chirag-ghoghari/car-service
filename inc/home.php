@@ -1,5 +1,19 @@
-
-<nav class="navbar shadow-lg navbar-expand-lg navbar-dark bg-dark sticky-top" style="background-color: #e3f2fd;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .person_img{
+            width: 15%;
+            border-radius: 50%;
+            margin-left: 25%;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar shadow-lg navbar-expand-lg navbar-dark bg-dark sticky-top d-flex justify-content-between" style="background-color: #e3f2fd;">
     <div class="container ps-5">
         <a class="navbar-brand" href="index.php">Car Service</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -21,7 +35,7 @@
             <div class="dropdown">
                 <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    <img src="./img/<?php echo $row['img'];?>" alt="" width="50px" height="50px" class="rounded-circle">
+                    <img src="./img/person.png" alt="" class="person_img">
                     <span class="text-white"><i class="fa-solid fa-caret-down"></i></span>
                 </div>  
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -33,3 +47,6 @@
         </div>
     </div>
 </nav>
+</body>
+</html>
+
