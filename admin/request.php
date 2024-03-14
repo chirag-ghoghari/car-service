@@ -46,7 +46,13 @@ require '../connection.php';
                             </select>
                             <div class="mt-3">
                                 <input type="submit" name="asce" value="Ascending" class="btn btn-primary">
-                                <input type="submit" name="desc" value="Descending" class="btn btn-primary">
+                                <input type="submit" name="desc" value="Descending" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="submit" name="All" value="All"  class="btn btn-primary" style="background-color:#00008B;">
+                                <input type="submit" name="pending" value="Pending" class="btn btn-primary" style="background-color:#FFA500;">
+                                <input type="submit" name="active" value="Active" class="btn btn-primary">
+                                <input type="submit" name="done" value="Done" class="btn btn-primary" style="background-color:#008000;">
+                                <input type="submit" name="cancelled" value="Cancel" class="btn btn-primary" style="background-color:#FF0000;">
+                                
                             </div>
                         </form>
 
@@ -81,6 +87,76 @@ require '../connection.php';
                                     }
                                     $qry = "select * from service_request order by $order_by DESC";
                                 }
+
+                                if (isset($_POST['All'])) {
+                                    // $order_by = isset($_POST['select_col']) ? $_POST['select_col'] : 'id'; // Default sorting by id if no column is selected
+                                
+                                    $qry = "select * from service_request";
+                                    $result = mysqli_query($conn, $qry);
+                                    if ($result) {
+                                        // Proceed with displaying the pending data
+                                    } else {
+                                        echo "Error executing query: " . mysqli_error($conn);
+                                    }
+                                }
+
+                                if (isset($_POST['pending'])) {
+                                    // $order_by = isset($_POST['select_col']) ? $_POST['select_col'] : 'id'; // Default sorting by id if no column is selected
+                                
+                                    $qry = "SELECT * FROM service_request WHERE status = 0  ";
+                                    $result = mysqli_query($conn, $qry);
+                                    if ($result) {
+                                        // Proceed with displaying the pending data
+                                    } else {
+                                        echo "Error executing query: " . mysqli_error($conn);
+                                    }
+                                }
+                                if (isset($_POST['done'])) {
+                                    // Construct SQL query to select active data (status = 1)
+                                    $qry = "SELECT * FROM service_request WHERE status = 1";
+                                
+                                    // Execute the query
+                                    $result = mysqli_query($conn, $qry);
+                                
+                                    // Check if the query executed successfully
+                                    if ($result) {
+                                        // Proceed with displaying the active data
+                                    } else {
+                                        // Display an error message if the query fails
+                                        echo "Error executing query: " . mysqli_error($conn);
+                                    }
+                                }
+                                if (isset($_POST['active'])) {
+                                    // Construct SQL query to select active data (status = 1)
+                                    $qry = "SELECT * FROM service_request WHERE status = 2";
+                                
+                                    // Execute the query
+                                    $result = mysqli_query($conn, $qry);
+                                
+                                    // Check if the query executed successfully
+                                    if ($result) {
+                                        // Proceed with displaying the active data
+                                    } else {
+                                        // Display an error message if the query fails
+                                        echo "Error executing query: " . mysqli_error($conn);
+                                    }
+                                }
+                                if (isset($_POST['cancelled'])) {
+                                    // Construct SQL query to select active data (status = 1)
+                                    $qry = "SELECT * FROM service_request WHERE status = 3";
+                                
+                                    // Execute the query
+                                    $result = mysqli_query($conn, $qry);
+                                
+                                    // Check if the query executed successfully
+                                    if ($result) {
+                                        // Proceed with displaying the active data
+                                    } else {
+                                        // Display an error message if the query fails
+                                        echo "Error executing query: " . mysqli_error($conn);
+                                    }
+                                }
+
                                 $result = mysqli_query($conn, $qry);
                                 while ($r = mysqli_fetch_assoc($result)) :
                                 ?>
@@ -137,7 +213,7 @@ require '../connection.php';
                                         <td>
                                             <div class="d-flex column-gap-3">
                                             <a href="edit-request.php?id=<?php echo $r['id'] ?>" class="btn btn-outline-success">Edit</a>
-                                            <a href="delete-request.php?id=<?php echo $r['id'] ?>" class="btn btn-outline-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                                            
                                             </div>
                                         </td>
                                     </tr>

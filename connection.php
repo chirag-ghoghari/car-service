@@ -8,4 +8,3 @@
     $conn = mysqli_connect($server, $username, $password, $db) or die('Not Connected');
     
     // echo "Connected :)";
-?>

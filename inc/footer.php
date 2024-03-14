@@ -13,8 +13,9 @@
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $r['sname']?></h5>
                             <p class="card-text"><?php echo $r['serviceDesc']?></p>
+                            <label > Price Of This Service:-  <?php echo $r['price'];?>₹</label>
                            
-                            <a href="send_req.php?sendReq=<?php echo $r['sname'];?>" class="btn btn-dark">Send Request</a>
+                            <!--<a href="send_req.php?sendReq= <?php //echo $r['sname'];?> " class="btn btn-dark">Send Request</a> -->
                         </div>
                     </div>
                 </div>
@@ -71,6 +72,8 @@
         </div>
     </div>
 
+   
+
     <!-- Contact div -->
     <div class="contact py-5 text-center" id="contect">
         <div class="container card border-dark">
@@ -84,6 +87,8 @@
         </div>
 
     </div>
+
+    <h2 style="text-align:center;">Thank You For Visit Our WebSite</h2><br><br>
 
     <!-- Footer -->
     <footer class="bg-dark text-white py-4">

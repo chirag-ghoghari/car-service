@@ -26,7 +26,7 @@ use PHPMailer\PHPMailer\Exception;
 require('./phpmailer/PHPMailer.php');
 require('./phpmailer/SMTP.php');
 require('./phpmailer/Exception.php');
-function sendMail($email)
+function sendMail($conn,$email,$serviceDetails)
 {
 
     $mail = new PHPMailer(true);
@@ -49,7 +49,30 @@ function sendMail($email)
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Request to get service';
-        $mail->Body = "<h1>You are requested a service</h1>";
+        $user_name =$_SESSION['username'];
+        $qry = "select * from services where isActive=1";
+        $result = mysqli_query($conn, $qry) or die('Not come');
+        $totalBills=0;
+        $service_price_details="";
+        while ($r = mysqli_fetch_assoc($result)){
+            
+            if (strpos($serviceDetails, $r['sname']) !== false) {
+                $service_name = $r['sname'];
+                $price = $r['price'];
+                $service_price_details .= $service_name . " = ₹" . $price . "<br>";
+                $totalBills = $totalBills + $r['price'];
+              } 
+        }
+
+        
+        $mail->Body = "Hello ".$user_name.",<br><p><h4>Need a reliable car service? We offer expert repairs & maintenance. Manage appointments, staff schedules, & parts inventory. Car Service Company</h4></p><br>
+
+        <p>This version expands on services while mentioning the admin aspect of managing appointments, staff, and inventory. It also adds a friendly touch by addressing the user directly Car Service Company.</p><br><br>
+        
+        <h4>Services : </h4>
+        ".$service_price_details."
+        <h3>Total Biils : ".$totalBills."
+        </h3>";
 
         $mail->send();
         return true;
@@ -172,9 +195,10 @@ function sendMail($email)
                         </div>
                     </div>
                 </div>
+                <p>Your Car Is Our responsibilities</p>
                 <button type="submit" class="btn btn-dark" name="submit" onclick="check();">Send Request</button>
                 <?php
-                if (isset($_POST['submit'])) {
+                if (isset($_POST['submit']) && isset($_POST['services'])) {
                     // // print_r($_POST);
                     $oname = $_POST['oname'];
                     $contact = $_POST['contact'];
@@ -187,7 +211,7 @@ function sendMail($email)
                     $result = mysqli_query($conn, $qry);
                     //alert("Successfully send request")
                     header('Location: view_service.php');
-                    sendMail( $_SESSION['email']);
+                    sendMail($conn, $_SESSION['email'],$services);
                     if ($result) {
                         //  alert("Request send successfully!");
                 

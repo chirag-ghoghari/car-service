@@ -74,7 +74,7 @@ $qry = mysqli_query($conn, $selectqry);
                                         <td>
                                             <div class="action d-flex column-gap-3">
                                                 <a href="edit-service.php?sid=<?php echo $r['sid'] ?>" class="btn btn-success">Edit</a>
-                                                <a href="delete-service.php?sid=<?php echo $r['sid'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                                                <!--<a href="delete-service.php?sid=<?php //echo $r['sid'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a> -->
                                             </div>
                                         </td>
                                     </tr>

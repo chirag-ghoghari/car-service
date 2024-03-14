@@ -33,7 +33,7 @@ if(isset($_POST['query'])){
                 <td>
                     <div class="action d-flex column-gap-3">
                         <a href="edit-service.php?sid='.$row['sid'].'" class="btn btn-success">Edit</a>
-                        <a href="delete-service.php?sid='.$row['sid'].'" class="btn btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</a>
+                        
                     </div>
                 </td>
             </tr>';
@@ -41,5 +41,6 @@ if(isset($_POST['query'])){
     } else {
         echo 'No results found';
     }
+    //<a href="delete-service.php?sid='.$row['sid'].'" class="btn btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</a>
 }
 ?>
