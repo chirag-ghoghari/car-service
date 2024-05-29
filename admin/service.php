@@ -34,11 +34,11 @@ $qry = mysqli_query($conn, $selectqry);
             <div class="col py-3">
                 <div class="container">
                     <h1 class="text-center mt-5">This is Services Table</h1>
-                    <hr>
-                    <div class="search mb-5">
+                    <hr><br><br><br>
+                    <!--<div class="search mb-5">
                         <label for="search">Search Services... </label>
                         <input type="text" name="" id="search" class="form-control w-25 ">
-                    </div>
+                    </div>-->
                     <div class="table-responsive text-center">
                         <table class="table table-striped">
                             <thead>
@@ -72,15 +72,16 @@ $qry = mysqli_query($conn, $selectqry);
                                             <i class="<?php echo $r['isActive'] ? 'fa fa-check' : 'fa fa-xmark' ?>"></i>
                                         </td>
                                         <td>
-                                            <div class="action d-flex column-gap-3">
+                                            <div class="action d-flex column-gap-2">
                                                 <a href="edit-service.php?sid=<?php echo $r['sid'] ?>" class="btn btn-success">Edit</a>
-                                                <!--<a href="delete-service.php?sid=<?php //echo $r['sid'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a> -->
+                                                <a href="delete-service.php?sid=<?php echo $r['sid'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                                            
                                             </div>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>
                             </tbody>
-                        </table>
+                        </table><br><br>
                         <div class="action">
                             <a href="add-service.php" class="btn btn-dark">Add Service</a>
                         </div>

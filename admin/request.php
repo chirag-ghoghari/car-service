@@ -36,17 +36,17 @@ require '../connection.php';
                         <input type="text" name="" id="search" class="form-control w-25">
                         <hr> -->
                         <form action="" method="post">
-                            <label for="selct"> Select Column</label>
+                            <!--<label for="selct"> Select Column</label>
                             <select name="select_col" id="" class="form-control w-25">
                                 <option value="">-- select --</option>
                                 <option value="id">id</option>
                                 <option value="oname">Owner Name</option>
                                 <option value="vname">Car Name</option>
                                 <option value="status">Status</option>
-                            </select>
+                            </select>-->
                             <div class="mt-3">
-                                <input type="submit" name="asce" value="Ascending" class="btn btn-primary">
-                                <input type="submit" name="desc" value="Descending" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <!--<input type="submit" name="asce" value="Ascending" class="btn btn-primary">
+                                <input type="submit" name="desc" value="Descending" class="btn btn-primary">-->
                                 <input type="submit" name="All" value="All"  class="btn btn-primary" style="background-color:#00008B;">
                                 <input type="submit" name="pending" value="Pending" class="btn btn-primary" style="background-color:#FFA500;">
                                 <input type="submit" name="active" value="Active" class="btn btn-primary">
@@ -213,6 +213,7 @@ require '../connection.php';
                                         <td>
                                             <div class="d-flex column-gap-3">
                                             <a href="edit-request.php?id=<?php echo $r['id'] ?>" class="btn btn-outline-success">Edit</a>
+                                            <a href="delete-request.php?id=<?php echo $r['id'] ?>" class="btn btn-outline-danger" onclick="return confirm('Are you sure?')">Delete</a>
                                             
                                             </div>
                                         </td>
